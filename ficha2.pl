@@ -76,4 +76,26 @@ avg(Xs,R)			:- sum(Xs,S), length(Xs,L), R is (S/L).
 
 % 13)
 
+partition_(_,[],[],[]).
+partition_(P,[H|T],[H|B],S) :- P>=H, partition_(P,T,B,S).
+partition_(P,[H|T],B,[H|S])	:- partition_(P,T,B,S).
+
+% [13_v1]:
+qs1(Ls,R) :- qs_(Ls,R,[]).
+qs1_([],R,R).
+qs1_([H|T],Ss,R) :- partition_(H,T,Smalls,Bigs)
+				 ,	qs1_(Bigs,RBs,R)
+				 ,	qs1_(Smalls,Ss,[H|RBs]).
+
+% [13_v2]: (mais fácil de ler)
+
+++([],Y,Y).
+++([X|Xs],Ys,[X|R]) :- ++(Xs,Ys,R).
+
+qs([],[]).
+qs([H|T],R) :- 	partition_(H,T,S,B)
+			,	qs(B,Bs)
+			,	qs(S,Ss)
+			,	++(Ss,[H|Bs],R).
+
 
