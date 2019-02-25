@@ -78,8 +78,6 @@ minimum_([H|T],R)   :- minimum_(T,M), min(H,M,Min), R is Min.
 %--------------------------------- - - - - - - - - - -  -  -  -  -   -
 % 12) Construir a extensão de um predicado que calcule a média aritmética de um conjunto de valores
 avg(Xs,R)           :- sum(Xs,S), length(Xs,L), R is (S/L).
-% length_([],0).
-% length_([H|T],R)  :- length_(T,N), R is N+1.
 
 %--------------------------------- - - - - - - - - - -  -  -  -  -   -
 % 13) Construir a extensão de um predicado que ordene de modo crescente uma sequência de valores
