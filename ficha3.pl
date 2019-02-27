@@ -65,9 +65,28 @@ reverse([H|T],R) :- reverse(T,S), ++(S,[H],R).
 %--------------------------------- - - - - - - - - - -  -  -  -  -   -
 % 9) Construir a extensão do predicado «sublista» que determinase uma lista S é uma sublista deoutra listaL
 
-% pred([],_)          :- true.
-% pred([X,Xs],[Y,Ys]) :- X=Y, pred(Xs,Ys).
-% pred([X,Xs],[Y,Ys]) :- X=\=Y, false.
+isSubL(S,L) :- isSubL_(S,L,S).
+isSubL_([],_,_).
+isSubL_([H|X],[H|Y],Z) :- isSubL_(X,Y,Z).
+isSubL_([H|_],[K|Y],Z) :- isSubL_(Z,Y,Z).
 
 %--------------------------------- - - - - - - - - - -  -  -  -  -   -
 % 10) Construir a extensão de um predicado capaz de encontrar todas as possibilidades de prova de um teorema.
+
+solucoes(F,Q,S) :- Q, assert(temp(F)), fail.
+solucoes(F,Q,S) :- construir([],S).
+
+construir(L,S) :- retract(temp(X)), construir([X|L],S).
+construir(S,S).
+
+% test #10
+testSolucoes(S) :- solucoes((X,Y),filho(X,Y),S).
+
+filho( joao,jose    ).
+filho( jose,manuel  ).
+filho( carlos,jose  ).
+filho( filipe,paulo ).
+filho( maria,paulo  ).
+filho( paulo,antonio).
+filho( nadia,paulo  ).
+filho( antonio,joao ).
