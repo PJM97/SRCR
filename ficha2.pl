@@ -130,6 +130,11 @@ countEmptys([_|T],R)  :- countEmptys(T,R).
 
 %--------------------------------- - - - - - - - - - -  -  -  -  -   -
 % 16) Construir a extensão de um predicado que calcule o valor de verdade contrário à resposta a uma questão
-not(P) :- call(P) -> false; true.
+
+% [nao] -> solução das aulas teóricas
+nao(T) :- T,!,fail.
+nao(T).
+
+% not(P) :- call(P) -> false; true.
 
 
