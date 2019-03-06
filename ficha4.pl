@@ -13,6 +13,9 @@
 
 isEven(X) :- X mod 2 =:= 0.
 
+isEven2(2).
+isEven2(X) :- Y is X-2, Y>=2, isEven2(Y).
+
 %--------------------------------- - - - - - - - - - -  -  -  -  -   -
 % 2) Construa a extensão de um predicado capaz de caracterizar os números ímpares
 
