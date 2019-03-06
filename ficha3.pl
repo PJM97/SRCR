@@ -15,6 +15,9 @@ elem(_,[])       :- false.
 elem(E,[H|_])    :- E=H, true.
 elem(E,[_|T])    :- elem(E,T).
 
+elem2(E,L) :- ++([E],X,R), ++(Y,R,L).
+
+elem3(E,L) :- isSubL_([E],L).
 %--------------------------------- - - - - - - - - - -  -  -  -  -   -
 % 2) Construir a extensão do predicado «comprimento» que calculao número de elementos existentes numa lista
 
