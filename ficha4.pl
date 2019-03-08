@@ -69,7 +69,13 @@ mdc(X,Y,R) :- Z is Y-X, mdc(X,Z,R).
 %   se o valor do mínimo múltiplo comum for divisível pelo menor, está encontrada a solução do problema;
 %   Desenvolva a extensão de um predicado que calcule o m.m.c. entre 2 números naturais
 
-
+mmc(X,Y,R)   :- X>=Y, mmc(X,X,Y,R); mmc(Y,X,Y,R).
+mmc(_,X,Y,R) :- X>=Y, X mod Y =:= 0, R is X;
+                X< Y, Y mod X =:= 0, R is Y.
+mmc(Z,X,Y,Z) :- X>=Y, Z mod Y =:= 0;
+                X< Y, Z mod X =:= 0.
+mmc(Z,X,Y,R) :- X>=Y, K is Z+X, mmc(K,X,Y,R);
+                K is Z+Y, mmc(K,X,Y,R).
 
 %--------------------------------- - - - - - - - - - -  -  -  -  -   -
 % 9) Uma sequência de Fibonacci é definida por:{f[0]=0; f[1]=1; f[n]=f[n−2]+f[n−1]}
