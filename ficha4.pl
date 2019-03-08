@@ -38,7 +38,12 @@ isInt(X) :- isNat(X); isNat(-1*X).
 %--------------------------------- - - - - - - - - - -  -  -  -  -   -
 % 5) Construa a extensão de um predicado que determine os divisores de um número natural
 
-
+divs(X,R) :- X>0, divs(X,X,[],R).
+divs(X,1,L,[1|L]).
+divs(X,Y,L,[Y|R]) :- X mod Y =:= 0,
+                     Z is Y-1,
+                     divs(X,Z,L,R).
+divs(X,Y,L,R) :- Z is Y-1, divs(X,Z,L,R).
 
 %--------------------------------- - - - - - - - - - -  -  -  -  -   -
 % 6) Construa a extensão de um predicado que verifica se um número natural é primo
