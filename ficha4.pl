@@ -58,7 +58,9 @@ divs(X,Y,L,R) :- Z is Y-1, divs(X,Z,L,R).
 %   quando os valores forem iguais, esse é o valor do máximo divisor comum (m.d.c.) e o cálculo está terminado;
 %   Desenvolva a extensão de umpredicado que calcule o m.d.c. entre 2 números naturais
 
-
+mdc(X,X,X).
+mdc(X,Y,R) :- X>Y, Z is X-Y, mdc(Z,Y,R).
+mdc(X,Y,R) :- Z is Y-X, mdc(X,Z,R).
 
 %--------------------------------- - - - - - - - - - -  -  -  -  -   -
 % 8) O valor do mínimo múltiplo comum entre dois valores pode ser obtido através aos seguintes passos:
