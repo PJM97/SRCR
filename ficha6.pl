@@ -82,7 +82,11 @@ arcoiris(violeta).
 %--------------------------------- - - - - - - - - - -  -  -  -  -   -
 % 7) Construa um programa capaz de representar a autorização de atravessar a estrada baseado na não existência de automóveis em aproximação, e, ainda, a autorização de atravessar o caminho de ferro pela confirmaçãoda inexistência de um comboio em aproximação
 
+atravessar(estrada)
+	:- nao(vem_automovel).
 
+atravessar(caminho_de_ferro)
+	:- -vem_comboio.
 
 %--------------------------------- - - - - - - - - - -  -  -  -  -   -
 % 8) Tendo em consideração o grafo ilustrado na Figura 1, desenvolva um programa com a capacidade para definir o significado de «nodo terminal», baseado na descrição de grafospela definição de nodos e de arcos.
